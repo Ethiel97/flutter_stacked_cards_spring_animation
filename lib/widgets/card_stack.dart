@@ -71,8 +71,8 @@ class _CardStackState extends State<CardStack>
         builder: (BuildContext context, CardStackState cardStackState,
             Widget? child) {
           return GestureDetector(
-            onLongPress:()=> handlePress(cardStackState),
-            onTap: ()=>handlePress(cardStackState),
+            onLongPress: () => handlePress(cardStackState),
+            onTap: () => handlePress(cardStackState),
             child: Flow(
               delegate: _CardListFlowDelegate(
                 cardSpreadEnum: cardStackState,
@@ -112,15 +112,16 @@ class _CardListFlowDelegate extends FlowDelegate {
       print("ANIMATION VALUE: ${animation.value}");
 
       final offsetX = cardSpreadEnum.isCollapsed
-          ? (childSize / 2 + (dx * 3.75 * animation.value))
+          ? (childSize / 2 + (dx * 3.7 * animation.value))
           : (childSize / 2 -
               dx +
               (1 - animation.value) +
               (dx * animation.value));
 
       final offsetY = cardSpreadEnum.isCollapsed
-          ? height / 2 - sqrt(dx * 10 * animation.value)
+          ? height / 2 - sqrt(dx * 16 * animation.value)
           : height / 2 + (dx * (1 - animation.value) + (dx * animation.value));
+
       final angle =
           (cardSpreadEnum.isCollapsed ? ((pi / 170)) * dx : (-(pi / 220)) * dx);
 
