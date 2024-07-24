@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: true,
         home: Scaffold(
           backgroundColor:
-              Colors.grey.toTinyColor().brighten(40).shade(8).color,
+              Colors.grey.toTinyColor().brighten(30).shade(8).color,
           body: const Center(
             child: CardStack(),
           ),

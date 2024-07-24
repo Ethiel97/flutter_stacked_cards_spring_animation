@@ -7,8 +7,8 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) => AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         transformAlignment: Alignment.center,
-        height: 160,
-        width: 110,
+        height: 240,
+        width: 170,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),

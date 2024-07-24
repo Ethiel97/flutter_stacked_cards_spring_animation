@@ -25,17 +25,24 @@ class _CardStackState extends State<CardStack>
   var finalState = CardStackState.expanded;
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 550),
+      duration: const Duration(milliseconds: 1000),
     );
 
     _animation = CurvedAnimation(
-        parent: controller,
-        curve: Curves.easeOutBack,
-        reverseCurve: Curves.easeInBack);
+      parent: controller,
+      curve: Curves.elasticOut,
+      reverseCurve: Curves.elasticIn,
+    );
 
     tween = Tween(
       begin: CardStackState.collapsed,
@@ -62,14 +69,10 @@ class _CardStackState extends State<CardStack>
 
   @override
   Widget build(BuildContext context) => TweenAnimationBuilder(
-        onEnd: () {
-          print('ANIMATION END');
-        },
         curve: Curves.bounceInOut,
         duration: const Duration(milliseconds: 1200),
-        tween: Tween(begin: initialState, end: finalState)..animate(controller),
-        builder: (BuildContext context, CardStackState cardStackState,
-            Widget? child) {
+        tween: Tween(begin: initialState, end: finalState),
+        builder: (_, cardStackState, __) {
           return GestureDetector(
             onLongPress: () => handlePress(cardStackState),
             onTap: () => handlePress(cardStackState),
@@ -104,26 +107,22 @@ class _CardListFlowDelegate extends FlowDelegate {
     final yStart = size.height / 2;
     for (int i = context.childCount - 1; i >= 0; i--) {
       const double margin = 12;
-      final childSize = context.getChildSize(i)!.width * -1;
-      final height = context.getChildSize(i)!.height * -1;
+      final childSize = (context.getChildSize(i)!.width * -1) / 2;
+      final height = (context.getChildSize(i)!.height * -1) / 2;
 
       final dx = margin * i;
 
-      print("ANIMATION VALUE: ${animation.value}");
-
       final offsetX = cardSpreadEnum.isCollapsed
-          ? (childSize / 2 + (dx * 3.7 * animation.value))
-          : (childSize / 2 -
-              dx +
-              (1 - animation.value) +
-              (dx * animation.value));
+          ? (childSize + (dx * 3.4 * animation.value))
+          : (childSize - dx + (dx * animation.value));
 
       final offsetY = cardSpreadEnum.isCollapsed
-          ? height / 2 - sqrt(dx * 16 * animation.value)
-          : height / 2 + (dx * (1 - animation.value) + (dx * animation.value));
+          ? height - sqrt(dx * 30 * animation.value)
+          : height + (dx * (1 - animation.value) + (dx * animation.value));
 
-      final angle =
-          (cardSpreadEnum.isCollapsed ? ((pi / 170)) * dx : (-(pi / 220)) * dx);
+      final angle = (cardSpreadEnum.isCollapsed
+          ? (pi / 270) * dx * animation.value
+          : (-(pi / 270)) * dx);
 
       context.paintChild(
         i,
