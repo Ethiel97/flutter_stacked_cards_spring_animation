@@ -7,26 +7,26 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) => AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         transformAlignment: Alignment.center,
-        height: 180,
-        width: 120,
+        height: 160,
+        width: 110,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
             width: 1,
-            color: Colors.grey.withOpacity(.5),
+            color: Colors.grey.withOpacity(.4),
           ),
           boxShadow: [
             BoxShadow(
-              offset: const Offset(0, 4),
-              blurRadius: 8,
-              color: Colors.black.withOpacity(.1),
+              offset: const Offset(0, 10),
+              blurRadius: 20,
+              color: Colors.black.withOpacity(.02),
             ),
-            /* BoxShadow(
+            BoxShadow(
               offset: const Offset(0, 8),
               blurRadius: 16,
-              color: Colors.blueAccent.withOpacity(.2),
-            ) */
+              color: Colors.blueAccent.withOpacity(.01),
+            )
           ],
         ),
       );

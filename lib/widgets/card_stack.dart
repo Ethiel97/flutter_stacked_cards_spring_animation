@@ -44,10 +44,10 @@ class _CardStackState extends State<CardStack>
   }
 
   handlePress(CardStackState cardStackState) {
-    if (controller.isCompleted) {
-      controller.reverse();
-    } else {
+    if (controller.isDismissed) {
       controller.forward();
+    } else {
+      controller.reverse();
     }
 
     setState(() {
@@ -122,7 +122,7 @@ class _CardListFlowDelegate extends FlowDelegate {
           ? height / 2 - sqrt(dx * 10 * animation.value)
           : height / 2 + (dx * (1 - animation.value) + (dx * animation.value));
       final angle =
-          (cardSpreadEnum.isCollapsed ? ((pi / 400)) * dx : (-(pi / 300)) * dx);
+          (cardSpreadEnum.isCollapsed ? ((pi / 170)) * dx : (-(pi / 220)) * dx);
 
       context.paintChild(
         i,

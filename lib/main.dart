@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:myapp/widgets/card_stack.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: true,
         home: Scaffold(
           backgroundColor:
-              Colors.grey.toTinyColor().brighten(70).shade(5).color,
+              Colors.grey.toTinyColor().brighten(40).shade(8).color,
           body: const Center(
             child: CardStack(),
           ),
