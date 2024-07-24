@@ -4,6 +4,5 @@ A flutter project demonstrating a stacked card with a spring animation
 
 ## Demo:
 
-<video controls>
- <source src="https://i.imgur.com/Aecq8RJ.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/746e1905-147d-48e4-af5c-698353e446a9
+
